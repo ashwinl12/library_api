@@ -19,7 +19,7 @@ type data struct {
 }
 
 func main() {
-	dsn := "host=127.0.0.1:5432 user=onito_his_user password=onito@db dbname=library_db port=5432 TimeZone=Asia/Kolkata"
+	dsn := "host=localhost user=onito_his_user password=onito@db dbname=library_db port=5432 TimeZone=Asia/Kolkata"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal(err)
