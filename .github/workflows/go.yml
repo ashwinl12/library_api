@@ -17,6 +17,7 @@ jobs:
       postgres:
         image: postgres:12
         env:
+          POSTGRES_HOST: localhost
           POSTGRES_USER: onito_his_user
           POSTGRES_PASSWORD: onito@db
           POSTGRES_DB: library_db
