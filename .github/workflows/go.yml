@@ -17,7 +17,6 @@ jobs:
       postgres:
         image: postgres:12
         env:
-          POSTGRES_HOST: localhost
           POSTGRES_USER: onito_his_user
           POSTGRES_PASSWORD: onito@db
           POSTGRES_DB: library_db
@@ -26,6 +25,9 @@ jobs:
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
 
     steps:
       - uses: actions/checkout@v3
@@ -35,5 +37,15 @@ jobs:
         with:
           go-version: 1.19
 
+      #- name: Connect to PostgreSQL
+      # Runs a script that creates a PostgreSQL table, populates
+      # the table with data, and then retrieves the data          
+
       - name: run
         run: go run ./
+
+        env:
+          # The hostname used to communicate with the PostgreSQL service container
+          POSTGRES_HOST: localhost
+          # The default PostgreSQL port
+          POSTGRES_PORT: 5432        
